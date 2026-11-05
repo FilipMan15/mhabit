@@ -79,7 +79,7 @@ jobs:
     name: Build Android APK
     needs:
       - precheck-gate
-    if: ${{ inputs.target == 'all' || inputs.target == 'android' }}
+    if: ${{ always() && needs.precheck-gate.result == 'success' && (inputs.target == 'all' || inputs.target == 'android') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -160,7 +160,7 @@ jobs:
     name: Build Windows Portable
     needs:
       - precheck-gate
-    if: ${{ inputs.target == 'all' || inputs.target == 'windows' }}
+    if: ${{ always() && needs.precheck-gate.result == 'success' && (inputs.target == 'all' || inputs.target == 'windows') }}
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v7
