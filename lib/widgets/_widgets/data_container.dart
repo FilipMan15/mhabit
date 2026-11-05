@@ -31,7 +31,7 @@ class DateContainer extends StatelessWidget {
       color: theme.colorScheme.onSurface,
     );
 
-    final today = AppClock().now();
+    final today = AppClock().logicalNow();
     final showDate = date ?? today;
     final content = <Widget>[];
     if (showDate.isSameDate(today)) {

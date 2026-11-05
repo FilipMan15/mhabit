@@ -156,30 +156,23 @@ jobs:
           retention-days: ${{ inputs.retention-days }}
 
   build-windows-msix:
-    name: Build Windows MSIX Installer
+    # Fork change: portable (unsigned) Windows build, no certificate needed.
+    name: Build Windows Portable
     needs:
       - precheck-gate
     if: ${{ inputs.target == 'all' || inputs.target == 'windows' }}
-    strategy:
-      matrix:
-        variant:
-          - arch: x64
-            runner: windows-2022
-    runs-on: ${{ matrix.variant.runner }}
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup_flutter
-      - id: build
-        uses: ./.github/actions/build_windows
-        with:
-          arch: ${{ matrix.variant.arch }}
-          app-sign-key-pfx: ${{ secrets.APP_SIGN_KEY_PFX }}
-          app-sign-key-pfx-password: ${{ secrets.APP_SIGN_KEY_PFX_PASSWORD }}
+      - name: Build Windows
+        run: flutter build windows --release
+        shell: bash
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v7
         with:
-          name: mhabit-windows-${{ matrix.variant.arch }}-msix
-          path: ${{ steps.build.outputs.msix-path }}
+          name: table-habit-3am-windows-x64
+          path: build/windows/x64/runner/Release
           if-no-files-found: error
           retention-days: ${{ inputs.retention-days }}
 

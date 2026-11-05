@@ -50,7 +50,7 @@ class HabitDatePickerDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final CustomColors? colorData = themeData.extension<CustomColors>();
-    final DateTime now = AppClock().now();
+    final DateTime now = AppClock().logicalNow();
     final firstday = context.select<AppFirstDayViewModel, int>(
       (vm) => vm.firstDay,
     );

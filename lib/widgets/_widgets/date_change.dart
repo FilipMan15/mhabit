@@ -30,7 +30,7 @@ class DateChangeNotifier extends ChangeNotifier implements ProviderMounted {
 
   DateChangeNotifier({HabitDate? dateTime, String? timezoneName}) {
     final now = AppClock().now();
-    _dateTime = dateTime ?? HabitDate.dateTime(now);
+    _dateTime = dateTime ?? HabitDate.dateTime(AppClock().logicalNow());
     _tzName = timezoneName ?? now.timeZoneName;
   }
 
@@ -118,7 +118,7 @@ class _DateChangeBuilder extends State<DateChangeBuilder> {
       if (!changeNotifer.mounted) return;
       final now = AppClock().now();
       // datetime
-      final crtDate = HabitDate.dateTime(now);
+      final crtDate = HabitDate.dateTime(AppClock().logicalNow());
       // timezone
       final tzName = now.timeZoneName;
       if (changeNotifer.tzName != tzName) {

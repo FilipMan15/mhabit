@@ -30,6 +30,15 @@ class AppClock {
 
   DateTime now() => _clock.now();
 
+  /// The day rolls over at this time instead of midnight.
+  /// Between 00:00 and 03:00 the app still treats it as the previous day.
+  static const Duration dayStartOffset = Duration(hours: 3);
+
+  /// Current time shifted back by [dayStartOffset].
+  /// Use ONLY to decide which calendar day it is ("today"),
+  /// never for timestamps, reminders, or sync.
+  DateTime logicalNow() => now().subtract(dayStartOffset);
+
   void setClock(Clock newClock) {
     final oldClock = _clock;
     _clock = newClock;

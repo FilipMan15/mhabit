@@ -198,7 +198,7 @@ class HabitForm {
          name: '',
          type: type,
          color: HabitColor.builtIn(colorType),
-         startDate: HabitStartDate.dateTime(AppClock().now()),
+         startDate: HabitStartDate.dateTime(AppClock().logicalNow()),
          frequency: HabitFrequency.daily,
          dailyGoal: HabitDailyGoalData(type: type),
          targetDays: defaultHabitTargetDays,

@@ -126,7 +126,7 @@ class HabitScoreCalculator {
     num lastScore = crtScore;
 
     HabitRecordDate crtDate = _startDate;
-    final endDate = _endDate ?? HabitRecordDate.dateTime(AppClock().now());
+    final endDate = _endDate ?? HabitRecordDate.dateTime(AppClock().logicalNow());
 
     for (var date in _dateIter) {
       if (date > endDate) break;

@@ -23,7 +23,7 @@ class HabitDate implements DateTime, DateTimeExtensionsABC {
     : _date = DateTime.utc(year, month, day);
 
   HabitDate.now() {
-    final now = AppClock().now();
+    final now = AppClock().logicalNow();
     _date = DateTime.utc(now.year, now.month, now.day);
   }
 

@@ -216,7 +216,7 @@ class _HabitSummaryListTile extends State<HabitSummaryListTile> {
         _getDefaultListTileColor(themeData);
     final TextTheme textTheme = themeData.textTheme;
 
-    final DateTime crtDate = widget.startDate ?? AppClock().now();
+    final DateTime crtDate = widget.startDate ?? AppClock().logicalNow();
     final int? limitItemCount = widget.endDate == null
         ? null
         : math.max(crtDate.difference(widget.endDate!).inDays, 0) + 1;

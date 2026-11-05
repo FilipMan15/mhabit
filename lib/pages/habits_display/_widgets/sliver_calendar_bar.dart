@@ -72,7 +72,7 @@ class _SliverCalendarBar extends State<SliverCalendarBar> {
 
   @override
   Widget build(BuildContext context) {
-    final currentDate = widget.startDate ?? AppClock().now();
+    final currentDate = widget.startDate ?? AppClock().logicalNow();
     final int? itemCount = widget.endDate == null
         ? null
         : math.max(currentDate.difference(widget.endDate!).inDays, 0) + 1;
